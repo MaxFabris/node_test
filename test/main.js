@@ -1,5 +1,6 @@
 var assert = require('assert'),
     chai = require('chai'),
+    sinon = require('sinon'),
     expect = chai.expect;
 
 chai.should();
@@ -42,11 +43,11 @@ afterEach(function () {
     // globalAfterVar = 'luca';
 });
 
-describe('make testing', function (){
+describe('make testing', function () {
 
     this.timeout(5000);
 
-    describe('TEstinf before before eac afeter after each', function (){
+    describe('Testing before, before each, after and after each', function (){
         it ('should define a global variable', function () {
             globalVar.should.be.a('number');
             globalVar = 20;
@@ -66,6 +67,7 @@ describe('make testing', function (){
         })
 
     });
+
     describe('test async code', function (){
         it ('should call back', function (done) {
 
@@ -91,6 +93,7 @@ describe('make testing', function (){
             result.should.equal(10);
 
         });
+
         it('should make a copy of a given object', function (){
             var obj = copy({name: 'luca'});
             obj.should.be.not.null;
@@ -104,6 +107,22 @@ describe('make testing', function (){
             obj.should.deep.equal(globalObj);
 
         } )
+    });
+
+    describe('Testing with sinon', function () {
+        it('should have called the callback',function () {
+            function caller(cb) {
+                cb(10);
+            }
+
+            var spy = sinon.spy();
+            caller(spy);
+
+            spy.called.should.be.true;
+            spy.calledWith(10).should.be.true;
+
+        });
+
     });
 
 });
