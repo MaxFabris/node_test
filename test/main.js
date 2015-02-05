@@ -18,10 +18,9 @@ function copy (obj) {
 
 
 function asyncFn(cb) {
-    setTimeout
-    (function () {
+    setTimeout(function () {
         cb('');
-    },2000    );
+    },2000);
 
 }
 
@@ -43,7 +42,7 @@ afterEach(function () {
     // globalAfterVar = 'luca';
 });
 
-xdescribe('make testing', function (){
+describe('make testing', function (){
 
     this.timeout(5000);
 
